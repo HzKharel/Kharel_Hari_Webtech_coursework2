@@ -1,0 +1,110 @@
+
+
+<head>
+    <script type="text/javascript">
+        let username = localStorage.getItem("username");
+        if(username === null){
+            window.location.href='Login.html';
+        }
+    </script>
+    <title>Messenger</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script type="text/javascript" src="scripts/apiScripts/Messenger.js"></script>
+    <script type="text/javascript" src="scripts/apiScripts/UserPortal.js"></script>
+    <script type="text/javascript" src="scripts/cipher_desc.js"></script>
+    <script type="text/javascript" src="scripts/Rot13.js"></script>
+    <script type="text/javascript" src="scripts/Autokey.js"></script>
+    <script type="text/javascript" src="scripts/VignereCipher.js"></script>
+    <script type="text/javascript" src="scripts/morsecode.js"></script>
+    <script type="text/javascript" src="scripts/binary.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+
+
+    <script>
+       getContacts();
+    </script>
+
+
+</head>
+
+<body>
+<div class="header" id="myHeader">
+
+        <h2 align="left" style="font-family: 'Roboto-Light'">Encoded Messaging Platform </h2>
+
+</div>
+
+<div class="sidebar">
+    <a id="loggedas" onclick="logout()"></a>
+    <a href="index.html">Encoder</a>
+    <a href="guesscountry.html">Guess The Country</a>
+    <a href="https://hzkharel.github.io/Kharel_Hari_Webtech_coursework1/report/web_tech_cw1_report.pdf">View Report</a>
+    <a href="Messenger.html" class="active">Messenger</a>
+    <a href="inbox.html">Inbox</a>
+    <a href="Profile.html">My Profile</a>
+
+</div>
+<!-- ALL CODE GOES HERE -->
+<div class="main" id="wrapper">
+    <div class="center">
+            <div class="row">
+                <div class="column" style="width: 100%; padding-right: 3%">
+                    <div class="column" style="width: 65%; margin-right: 5%">
+                        <input type="text"class="blockText" style="margin-bottom: 30px; height: 40px;" autofocus id="addContact" maxlength="100" placeholder="Enter User ID"></textarea>
+                    </div>
+
+                    <div class="column" style="width: 30%; alignment: right">
+                        <button type="button" class="block" style=" margin-top: 10px; width: 100%; height: 40px" onclick="add_contact()" id="addContact">Add Contact</button>
+
+                    </div>
+                </div>
+                <hr>
+                <br>
+                <div class="column" style="width: 87%; padding-right: 3%">
+                    <div class="dropdown">
+                        <button class="dropbtn" id="dropdownSelector">Select Encoder</button>
+                        <div class="dropdown-content">
+
+                            <a href="#" onclick="selected_cipher('rot13');">ROT 13</a>
+                            <a href="#" onclick="selected_cipher('vignere');">Vignere Cipher</a>
+                            <a href="#" onclick="selected_cipher('autokey');">Autokey Cipher</a>
+                            <a href="#" onclick="selected_cipher('morse');">Morse Code</a>
+                            <a href="#" onclick="selected_cipher('binary');">Binary</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="column" style="width: 10%; alignment: right">
+                    <img src="assets/mic.png" id="microphone" onclick="startRecignition()" style="max-width: 50px; max-height: 50px">
+                </div>
+
+
+            </div>
+
+            <div id="InputField">
+                <textarea rows="10" class="blockText" style="; box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);" autofocus id="encodeField"></textarea>
+                <br>
+                <input type="text"class="blockText" style="margin-bottom: 30px; height: 30px" autofocus id="encodedMessageKey" maxlength="100" placeholder="Cipher Key (if applicable)"></textarea>
+
+                <hr>
+                <br>
+                <div class="column" style="width: 100%; padding-right: 3%">
+                    <div class="column" style="width: 65%; margin-right: 5%">
+                        <div class="dropdown">
+                        <input type="text"class="blockText" style="margin-bottom: 0px; height: 40px;" autofocus id="SelectedContact" maxlength="100" onkeyup="contacts_listener()" placeholder="Search Contacts or Type in a User Name."></textarea>
+                        <div class="dropdown-content" id="contactList">
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="column" style="width: 30%; alignment: right">
+                        <button type="button" class="block" style=" margin-top: 10px; width: 100%; height: 40px" onclick="encrypted_message()" id="sendMessage">Send</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+</body>
